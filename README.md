@@ -7,23 +7,27 @@ ROS2を使ったTODOリマインダーです。
 
 ## インストール方法
 
-~~~
-$ git clone https://github.com/KazukiFujita666/todo_reminder.git
-$ cd todo_reminder
-$ colcon build --symlink-install
-$ source install/setup.bash
-~~~
-
 ## 使用方法
 
 ノードの起動
 ~~~
 $ ros2 run todo_reminder todo_reminder
 ~~~
+
 TODOの追加
 ~~~
 $ ros2 topic pub /todo_add std_msgs/msg/String "data: '宿題やる'" -1
 ~~~
+
+##ノードの概要
+- /todo_reminder
+  TODOメッセージを受信して5秒後にアラートを送信するノード
+
+##トピック
+- /todo_add
+  TODOとして登録する文字列を受信
+- /todo_alert
+  5秒後にアラートとして送信される文字列
 
 ## 必要なソフトウェア
 - ROS2
