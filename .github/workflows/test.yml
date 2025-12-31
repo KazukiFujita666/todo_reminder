@@ -7,30 +7,27 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-24.04
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup ROS 2
-      uses: ros-tooling/setup-ros@v0.7
-      with:
-        version: humble
+      - name: Setup ROS 2 Humble
+        uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: humble
 
-    - name: Install dependencies
-      run: |
-        sudo apt update
-        sudo apt install -y python3-colcon-common-extensions python3-pip
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python3-colcon-common-extensions
 
-    - name: Build ROS 2 package
-      run: |
-        source /opt/ros/humble/setup.bash
-        colcon build
+      - name: Build workspace
+        run: |
+          colcon build
 
-    - name: Run test
-      run: |
-        source install/setup.bash
-        chmod +x test/test_todo_reminder.sh
-        ./test/test_todo_reminder.sh
+      - name: Run test
+        run: |
+          chmod +x test/test_todo_reminder.sh
+          ./test/test_todo_reminder.sh
 
