@@ -7,7 +7,7 @@ jobs:
       image: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
-      - name: build and test
+      - name: Build and Test
         shell: bash
         run: |
           rsync -av ./ /root/ros2_ws/src/todo_reminder/
