@@ -4,19 +4,13 @@ on: push
 
 jobs:
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
       - name: Build and Test
         run: |
-          mkdir -p /root/ros2_ws/src
           rsync -av ./ /root/ros2_ws/src/todo_reminder/
           cd /root/ros2_ws
-          
-          # rosdep update
-          # rosdep install --from-paths src --ignore-src -r -y
-          colcon build --symlink-install
-          source install/setup.bash
-          bash -xv src/todo_reminder/test/test_todo_reminder.sh /root
+          bash -xv ./src/todo_reminder/test/test_todo_reminder.sh /root
 
