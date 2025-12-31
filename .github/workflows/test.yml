@@ -1,7 +1,5 @@
 name: test
-
 on: push
-
 jobs:
   test:
     runs-on: ubuntu-22.04
@@ -9,13 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build and Test
-        shell: bash
         run: |
-          mkdir -p /root/ros2_ws/src
           rsync -av ./ /root/ros2_ws/src/todo_reminder/
           cd /root/ros2_ws
-
-          colcon build --symlink-install
-          source install/setup.bash
           bash -xv ./src/todo_reminder/test/test.bash /root
 
