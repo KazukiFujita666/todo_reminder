@@ -6,7 +6,7 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build and Test
+      - name: build and test
         run: |
           rsync -av ./ /root/ros2_ws/src/todo_reminder/
           cd /root/ros2_ws
