@@ -17,5 +17,5 @@ jobs:
 
           colcon build --symlink-install
           source install/setup.bash
-          bash -xv ./src/todo_reminder/test/test_todo_reminder.sh /root
+          bash -xv ./src/todo_reminder/test/test.bash /root
 
