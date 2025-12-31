@@ -4,7 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-22.04
     container:
-      image: ryuichiueda/ubuntu22.04-ros2:humble
+      image: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
       - name: build and test
