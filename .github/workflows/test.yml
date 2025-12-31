@@ -15,5 +15,9 @@ jobs:
           source /opt/ros/humble/setup.bash
           colcon build --symlink-install
           source install/setup.bash
-          bash -xv ./src/todo_reminder/test/test.bash /root
 
+          ros2 run todo_reminder todo_reminder &
+          TODO_REM_PID=$!
+          sleep 2
+          bash -xv ./src/todo_reminder/test/test.bash /root
+          kill $TODO_REM_PID
